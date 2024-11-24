@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "ifyoulike-playlist-generator"
+version = "0.1.0"
+description = "A tool that processes Reddit's r/ifyoulikeblank submissions to generate personalized Spotify playlists based on music recommendations."
+authors = ["Colton Flowers"]
+readme = "README.md"
+
+packages = [
+    { include = "ifyoulike_playlist_generator", from = "src" }
+]
+
+[tool.poetry.scripts]
+ifyoulike = "ifyoulike_playlist_generator.cli:process_submission"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+openai = "^1.55.0"
+requests = "^2.32.3"
+zstandard = "^0.23.0"
+python-dotenv = "^1.0.1"
+pandas = "^2.2.3"
+spotipy = "^2.24.0"
+bs4 = "^0.0.2"
+click = "^8.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
