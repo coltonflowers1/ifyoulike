@@ -1,6 +1,6 @@
 # IfYouLike Playlist Generator
 
-A tool that processes Reddit's r/ifyoulikeblank submissions to generate personalized Spotify playlists based on music recommendations.
+A tool that processes Reddit's [r/ifyoulikeblank](https://www.reddit.com/r/ifyoulikeblank/) submissions to generate personalized Spotify playlists based on music recommendations.
 
 ## Features
 
