@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 import click
 import asyncio
@@ -27,7 +28,7 @@ def process_submission(submission_id: str,
     """Process a Reddit submission and create a Spotify playlist."""
     
     async def run():
-        pipeline = MusicRecommendationPipeline()
+        pipeline = MusicRecommendationPipeline(log_level=logging.DEBUG)
         pipeline.submissions_path = submissions_path
         pipeline.comments_path = comments_path
         pipeline.output_dir = Path(output_dir)

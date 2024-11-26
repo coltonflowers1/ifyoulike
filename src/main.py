@@ -12,7 +12,7 @@ from parse import process_submission_and_comments, save_comments_to_csv
 from llm_linker import process_comments_file
 
 class MusicRecommendationPipeline:
-    def __init__(self):
+    def __init__(self,log_level:int=logging.INFO):
         load_dotenv()
         self.setup_logging()
         
