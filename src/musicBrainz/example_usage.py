@@ -1,4 +1,4 @@
-from musicbrainz_client import MusicBrainzClient
+from musicBrainz.client import MusicBrainzClient
 
 def main():
     # Initialize the client with your app information

@@ -27,14 +27,14 @@ def process_submission(submission_id: str,
                       album_limit: int):
     """Process a Reddit submission and create a Spotify playlist."""
     
-    async def run():
+    def run():
         pipeline = MusicRecommendationPipeline(log_level=logging.DEBUG)
         pipeline.submissions_path = submissions_path
         pipeline.comments_path = comments_path
         pipeline.output_dir = Path(output_dir)
         pipeline.output_dir.mkdir(parents=True, exist_ok=True)
         
-        playlist_url = await pipeline.process_submission(submission_id,artist_limit,album_limit)
+        playlist_url = pipeline.process_submission(submission_id,artist_limit,album_limit)
         
         if playlist_url:
             click.echo(f"\nSuccess! Playlist created:")
@@ -42,7 +42,7 @@ def process_submission(submission_id: str,
         else:
             click.echo(f"\nFailed to process submission {submission_id}")
     
-    asyncio.run(run())
+    run()
 
 if __name__ == '__main__':
     process_submission() 

@@ -1,6 +1,5 @@
 from typing import Optional
-from musicbrainz_client import MusicBrainzClient
-import asyncio
+from musicBrainz.client import MusicBrainzClient
 
 mb_client = MusicBrainzClient(
     app_name="ifyoulike-dataset",
@@ -88,6 +87,7 @@ def search_song(song_title: str, artist_name: Optional[str] = None, album_title:
     } for r in results["recordings"]]
 
     return _get_top_match(matches)
+
 def search_album(album_title: str, artist_name: Optional[str] = None, limit: int = 3) -> list:
     """
     Search for an album (release-group) using MusicBrainz's query syntax
@@ -155,39 +155,7 @@ def test(search_artist, search_song, search_album):
     print("\nAlbum search results (with artist):")
     print(album_results)
 
-# First, let's add async versions of our search functions
-async def search_artist_async(artist_name: str) -> Optional[dict]:
-    """Async version of search_artist"""
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, search_artist, artist_name)
 
-async def search_song_async(
-    song_title: str, 
-    artist_name: Optional[str] = None, 
-    album_title: Optional[str] = None
-) -> Optional[dict]:
-    """Async version of search_song"""
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(
-        None, 
-        search_song, 
-        song_title, 
-        artist_name, 
-        album_title
-    )
-
-async def search_album_async(
-    album_title: str, 
-    artist_name: Optional[str] = None
-) -> Optional[dict]:
-    """Async version of search_album"""
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(
-        None, 
-        search_album, 
-        album_title, 
-        artist_name
-    )
 
 if __name__ == "__main__":
     test(search_artist, search_song, search_album)

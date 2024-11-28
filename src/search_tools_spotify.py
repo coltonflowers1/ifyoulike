@@ -5,7 +5,7 @@ import os
 # source .env
 from dotenv import load_dotenv
 
-from search_tools import _get_top_match, test
+from musicBrainz.search_tools import _get_top_match, test
 
 load_dotenv()
 
@@ -28,7 +28,7 @@ def search_artist(artist_name: str) -> Optional[dict]:
     Returns:
         Optional[dict]: The best matching artist or None if no match found
     """
-    results = spotify_client.search(q=artist_name, type='artist', limit=3)
+    results =spotify_client.search(q=artist_name, type='artist', limit=3)
     
     if not results['artists']['items']:
         return None
@@ -73,7 +73,6 @@ def search_song(song_title: str, artist_name: Optional[str] = None, album_title:
     } for i, t in enumerate(results['tracks']['items'])]
     
     return _get_top_match(matches)
-
 def search_album(album_title: str, artist_name: Optional[str] = None, limit: int = 3) -> Optional[dict]:
     """
     Search for an album using Spotify API
